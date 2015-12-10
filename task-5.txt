@@ -1,0 +1,128 @@
+1)
+  git checkout -b architecture    | створив і перейшов на гілку architecture 
+  mkdir assets                    | створив папку assets
+  cd assets                       | зайшов в неї
+  mkdir uploads                   | створив папку uploads 
+  cd uploads                      | зайшов в неї
+  touch index.html                    | створив index.html
+  git add index.html                  | проіндексував 
+  git commit -m "Added index.html"    | закомітив
+  cd ..                                     | вийшов з папки
+  touch all.js - створюємо файл all.js      | створив all.js 
+  touch css.js - створюємо файл css.js      | створив css.js
+  git add .                                 | проіндексував
+  git commit -m "Added all.js css.js"       | закомітив
+  git push origin architecture              | залив в репозиторій на гілку architecture
+  cd ..                                     | вийшов з папки
+  echo "uploads/" > .gitignore            | створив .gitignore
+  git add .gitignore                      | проіндексував
+  git commit -m "Added gitignore"         | закомітив
+  git checkout master                     | переключився в мастер
+  git merge architecture                  | замержив гілку architecture в мастер
+  git branch -d architecture              | видалив гілку architecture
+  git branch                              | вивів список гілок (гілки architecture не має)
+  git push origin master                  | залив на гілку мастер
+
+  https://github.com/Nazar-bnm/task-5.1
+
+    Єдиний спосіб (який я знайшов) заігнорити файл, який проіндексований і закомічений
+   при цьому невидаляючи його - це видалити коміт, в якому його було закомічено.
+   Робив так:
+   git rebase -i HEAD~3    |   Вивело 3-ри останні коміти в редактор вім.
+
+   Видалив коміт "Added index.html"
+
+   git push origin master  | залив зміни на мастер.
+
+   https://github.com/Nazar-bnm/task-5
+
+   -----------------------------------------------------------------------------------------------------------
+
+2)
+  git branch new-branch     | відколов бренч
+  git branch                | подивився список бренчів
+  touch index.html                            | 
+  git add index.html                          | зробив
+  git commit -m "Added index.html"            |
+  touch style.css                             | декілька комітів
+  git add .                                   |
+  git commit -m "Added style.css"             | в мастер
+  git log --oneline                           |
+  git checkout new-branch          | переключився на бренч
+  git rebase master                | зробив рібейс з мастер
+  git add .                              |
+  git commit -m "Change index.html"      | зробив
+  git add .                              | декілька комітів
+  git commit -m "Change style.css"       | в бренчі
+  git status                             |
+  git checkout master          | переключився в мастер
+  git merge new-branch         | змержив зміни з рібейс в мастер
+  git log --oneline          
+  git branch -d new-branch     | видалив бренч
+  git branch
+
+-----------------------------------------------------------------------------------------------------------
+
+3)  
+    git init
+    git remote add origin https://github.com/Nazar-bnm/task-5.3.git
+    touch index.html
+    git add index.html                  | зробив
+    git commit -m "Added index.html"    |
+    touch style.css                     | декілька
+    git add style.css                   |  
+    git commit -m "Added style.css"     | комітів
+    git push origin master    | 
+    git tag v1.0              | створив мітку
+    git push origin v1.0      | залив мітку в репозиторій 
+
+    https://github.com/Nazar-bnm/task-5.3/releases
+
+-----------------------------------------------------------------------------------------------------------
+
+4) 
+  git submodule add https://github.com/Nazar-bnm/submodule.git | додав сабмодуль
+  git commit -m "Added submodule"                  | закомітив
+  git push origin master                           | залив в мастер 
+
+  https://github.com/Nazar-bnm/task-5.4
+  
+  -----------------------------------------------------------------------------------------------------------
+
+5)
+  git checkout -b gh-pages
+  git add index.html
+  git commit -m "Change index.html"
+  git push origin gh-pages
+
+  Перейшов по лінку http://nazar-bnm.github.io/task-5.4/ все синхронізовано.
+
+  Зробив зміни.
+  git add .
+  git commit -m "Change href in index.html"
+  git push origin gh-pages
+
+  Перевірив, все ок.
+
+  http://nazar-bnm.github.io/task-5.4/
+
+-----------------------------------------------------------------------------------------------------------
+
+  6)
+    зробив зміни в файлі  index.html
+
+    git add index.html                     |  проіндексував
+    git commit -m "added header"           |  закомітив
+    git checkout -b new-branch             |  створив і перейшов в новій бренч
+
+    зробив зміни в файлі index.html
+
+    git add index.html                        |  проіндексував
+    git commit -m "added another paragraph"   |  закомітив
+    git checkout master                       |  перейшов в мастер
+    git merge new-branch                      |  намагався замержити бренч в мастер
+
+    вийшов конфлікт
+
+    git merge --abort        | Відмінило мердж, поправив конфліктні строки.
+    git merge new-branch     | замержив бренч в мастер
